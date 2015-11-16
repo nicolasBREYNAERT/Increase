@@ -2,6 +2,7 @@
 
 class DefaultcController extends \Phalcon\Mvc\Controller
 {
+	
 	protected $model;
 	protected $messageTimerInterval=3000;
 	public function initialize(){
