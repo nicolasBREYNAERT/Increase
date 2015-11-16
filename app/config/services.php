@@ -83,6 +83,7 @@ $di->set('session', function () {
 
     return $session;
 });
+
 $di->set("jquery",function(){
 	$jquery= new JsUtils(array("driver"=>"Jquery"));
 	$jquery->bootstrap(new Bootstrap());//for Twitter Bootstrap

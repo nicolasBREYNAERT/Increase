@@ -1,15 +1,9 @@
 <?php
 
-class ProjectsController extends \DefaultcController
-{
+class ProjectsController extends DefaultController{
 	public function initialize(){
+		parent::initialize();
 		$this->model="Projet";
 	}
-	
-    public function indexAction(){
-    	parent::indexAction();
-		
-    }
-
 }
 

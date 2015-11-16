@@ -1,10 +1,10 @@
 <?php
 
-class DefaultcController extends \Phalcon\Mvc\Controller
-{
-	
+use Phalcon\Mvc\View;
+class DefaultController extends ControllerBase{
 	protected $model;
 	protected $messageTimerInterval=3000;
+
 	public function initialize(){
 		if($this->request->isAjax()){
 			$this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
@@ -26,10 +26,11 @@ class DefaultcController extends \Phalcon\Mvc\Controller
     	$this->jquery->compile($this->view);
     	$this->view->pick("main/index");
     }
+
     /**
      * Retourne une instance de $model<br>
-     * si $id est nul, un nouvel objet est retourné<br>
-     * sinon l'objet retourné est celui chargé depuis la BDD à partir de l'id $id
+     * si $id est nul, un nouvel objet est retournÃ©<br>
+     * sinon l'objet retournÃ© est celui chargÃ© depuis la BDD Ã  partir de l'id $id
      * @param string $id
      * @return multitype:$className
      */
@@ -42,29 +43,34 @@ class DefaultcController extends \Phalcon\Mvc\Controller
     	}
     	return $object;
     }
+
     /**
      * Affiche le formulaire d'ajout ou de modification d'une instance de $model<br>
-     * L'instance est définie à partir de $id<br>
-     * frm doit utiliser la méthode getInstance() pour obtenir l'instance à ajouter ou à modifier
+     * L'instance est dÃ©finie Ã  partir de $id<br>
+     * frm doit utiliser la mÃ©thode getInstance() pour obtenir l'instance Ã  ajouter ou Ã  modifier
      * @see DefaultController::getInstance()
      * @param string $id
      */
     public function frmAction($id=NULL){
-    	echo "A surdéfinir...<br>Sans oublier l'appel de la méthode parent en fin.";
+    	echo "A surdÃ©finir...<br>Sans oublier l'appel de la mÃ©thode parent en fin.";
     	$this->jquery->postFormOnClick(".validate", $this->dispatcher->getControllerName()."/update", "frmObject","#content");
     	$this->jquery->getOnClick(".cancel","","#content",array("attr"=>"data-ajax"));
     	$this->jquery->compile($this->view);
     }
+
+
     /**
-     * Affecte membre à membre les valeurs du tableau associatif $_POST aux membres de l'objet $object<br>
-     * Prévoir une sur-définition de la méthode pour l'affectation des membres de type objet<br>
-     * Cette méthode est utilisée update()
+     * Affecte membre Ã  membre les valeurs du tableau associatif $_POST aux membres de l'objet $object<br>
+     * PrÃ©voir une sur-dÃ©finition de la mÃ©thode pour l'affectation des membres de type objet<br>
+     * Cette mÃ©thode est utilisÃ©e update()
      * @see DefaultController::update()
      * @param multitype:$className $object
      */
     protected function setValuesToObject(&$object){
     	$object->assign($_POST);
     }
+
+
     /**
      * Affiche un message Alert bootstrap
      * @param DisplayedMessage $message
@@ -76,16 +82,17 @@ class DefaultcController extends \Phalcon\Mvc\Controller
      * Affiche un message Alert bootstrap
      * @param string $message texte du message
      * @param string $type type du message (info, success, warning ou danger)
-     * @param number $timerInterval durée en millisecondes d'affichage du message (0 pour que le message reste affiché)
+     * @param number $timerInterval durÃ©e en millisecondes d'affichage du message (0 pour que le message reste affichÃ©)
      * @param string $dismissable si vrai, l'alert dispose d'une croix de fermeture
      */
     public function _showMessage($message,$type="success",$timerInterval=0,$dismissable=true,$visible=true){
     	$message=new DisplayedMessage($message,$type,$timerInterval,$dismissable,$visible);
     	$this->_showDisplayedMessage($message);
     }
+
     /**
-     * Met à jour à partir d'un post une instance de $model<br>
-     * L'affectation des membres de l'objet par le contenu du POST se fait par appel de la méthode setValuesToObject()
+     * Met Ã  jour Ã  partir d'un post une instance de $model<br>
+     * L'affectation des membres de l'objet par le contenu du POST se fait par appel de la mÃ©thode setValuesToObject()
      * @see DefaultController::setValuesToObject()
      */
     public function updateAction(){
@@ -95,14 +102,14 @@ class DefaultcController extends \Phalcon\Mvc\Controller
     		if($_POST["id"]){
     			try{
     				$object->save();
-    				$msg=new DisplayedMessage($this->model." `{$object->toString()}` mis à jour");
+    				$msg=new DisplayedMessage($this->model." `{$object->toString()}` mis Ã  jour");
     			}catch(\Exception $e){
     				$msg=new DisplayedMessage("Impossible de modifier l'instance de ".$this->model,"danger");
     			}
     		}else{
     			try{
     				$object->save();
-    				$msg=new DisplayedMessage("Instance de ".$this->model." `{$object->toString()}` ajoutée");
+    				$msg=new DisplayedMessage("Instance de ".$this->model." `{$object->toString()}` ajoutÃ©e");
     			}catch(\Exception $e){
     				$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
     			}
@@ -131,7 +138,7 @@ class DefaultcController extends \Phalcon\Mvc\Controller
     		$object=call_user_func($this->model."::findfirst",$id);
     		if($object!==NULL){
     			$object->delete();
-    			$msg=new DisplayedMessage($this->model." `{$object->toString()}` supprimé(e)");
+    			$msg=new DisplayedMessage($this->model." `{$object->toString()}` supprimÃ©(e)");
     		}else{
     			$msg=new DisplayedMessage($this->model." introuvable","warning");
     		}
@@ -140,10 +147,11 @@ class DefaultcController extends \Phalcon\Mvc\Controller
     	}
     	$this->dispatcher->forward(array("controller"=>$this->dispatcher->getControllerName(),"action"=>"index","params"=>array($msg)));
     }
+
     /**
      * Affiche un message Alert bootstrap de type success
      * @param string $message texte du message
-     * @param number $timerInterval durée en millisecondes d'affichage du message (0 pour que le message reste affiché)
+     * @param number $timerInterval durÃ©e en millisecondes d'affichage du message (0 pour que le message reste affichÃ©)
      * @param string $dismissable si vrai, l'alert dispose d'une croix de fermeture
      */
     public function messageSuccess($message,$timerInterval=0,$dismissable=true){
@@ -152,7 +160,7 @@ class DefaultcController extends \Phalcon\Mvc\Controller
     /**
      * Affiche un message Alert bootstrap de type warning
      * @param string $message texte du message
-     * @param number $timerInterval durée en millisecondes d'affichage du message (0 pour que le message reste affiché)
+     * @param number $timerInterval durÃ©e en millisecondes d'affichage du message (0 pour que le message reste affichÃ©)
      * @param string $dismissable si vrai, l'alert dispose d'une croix de fermeture
      */
     public function messageWarning($message,$timerInterval=0,$dismissable=true){
@@ -161,7 +169,7 @@ class DefaultcController extends \Phalcon\Mvc\Controller
     /**
      * Affiche un message Alert bootstrap de type danger
      * @param string $message texte du message
-     * @param number $timerInterval durée en millisecondes d'affichage du message (0 pour que le message reste affiché)
+     * @param number $timerInterval durÃ©e en millisecondes d'affichage du message (0 pour que le message reste affichÃ©)
      * @param string $dismissable si vrai, l'alert dispose d'une croix de fermeture
      */
     public function messageDanger($message,$timerInterval=0,$dismissable=true){
@@ -170,12 +178,11 @@ class DefaultcController extends \Phalcon\Mvc\Controller
     /**
      * Affiche un message Alert bootstrap de type info
      * @param string $message texte du message
-     * @param number $timerInterval durée en millisecondes d'affichage du message (0 pour que le message reste affiché)
+     * @param number $timerInterval durÃ©e en millisecondes d'affichage du message (0 pour que le message reste affichÃ©)
      * @param string $dismissable si vrai, l'alert dispose d'une croix de fermeture
      */
     public function messageInfo($message,$timerInterval=0,$dismissable=true){
     	$this->_showMessage($message,"info",$timerInterval,$dismissable);
     }
-
 }
 

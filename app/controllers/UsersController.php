@@ -1,19 +1,20 @@
 <?php
 
-use Phalcon\Mvc\View;
-class UsersController extends \DefaultcController
-{
+use Ajax\bootstrap\html\html5\HtmlSelect;
+class UsersController extends DefaultController{
 	public function initialize(){
+		parent::initialize();
 		$this->model="User";
 	}
-    public function indexAction(){
-		parent::indexAction();
-		/*$this->view->setVars(array("users"=>$users));	
-		$this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);*/
-    }
-    public function frmAction($id){
-    	echo "non implémenté";
-    }
 
+	public function frmAction($id=NULL){
+		$user=$this->getInstance($id);
+		$select=new HtmlSelect("role","RÃ´le","SÃ©lectionnez un rÃ´le...");
+		$select->fromArray(array("admin","user","author"));
+		$select->setValue($user->getRole());
+		$select->compile($this->jquery,$this->view);
+		$this->view->setVars(array("user"=>$user,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher->getControllerName()));
+		parent::frmAction($id);
+	}
 }
 

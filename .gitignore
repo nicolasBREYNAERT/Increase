@@ -48,5 +48,5 @@ app/cache/
 public/css/bootstrap.min-old.css
 app/models/
 app/config/config.php
-vendor/
-increase/
+app/vendor/
+app/composer.lock
