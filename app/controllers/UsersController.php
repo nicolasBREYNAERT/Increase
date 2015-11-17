@@ -19,6 +19,7 @@ class UsersController extends DefaultController{
 	
 	public function projectsAction($id=NULL){
 		echo $id;
+		
 	}
 }
 
