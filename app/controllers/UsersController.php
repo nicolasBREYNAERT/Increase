@@ -18,7 +18,8 @@ class UsersController extends DefaultController{
 	}
 	
 	public function projectsAction($id=NULL){
-		echo $id;
+		$user=$this->getInstance($id);
+		$this->view->setVars(array("user"=>$user));
 	}
 }
 
