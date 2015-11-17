@@ -16,5 +16,9 @@ class UsersController extends DefaultController{
 		$this->view->setVars(array("user"=>$user,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher->getControllerName()));
 		parent::frmAction($id);
 	}
+	
+	public function projectsAction($id=NULL){
+		echo $id;
+	}
 }
 
