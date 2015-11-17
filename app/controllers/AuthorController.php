@@ -7,7 +7,7 @@ class AuthorController extends DefaultController{
 	}
 	public function ProjectsAction($id=NULL){
 		$user=User::findFirst("id=".$id);
- 		$p=Projet::find("idClient=".$id);
+ 		$p=Projet::find("idAuthor=".$id);
 		$this->view->setVars(array("user"=>$user, "projects"=>$p));
 	}
 }
