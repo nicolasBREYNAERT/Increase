@@ -19,10 +19,9 @@ class UsersController extends DefaultController{
 	
 	public function projectsAction($id=NULL){
 
-		$user=$this->getInstance($id);
-		$this->view->setVars(array("user"=>$user));
-
-		echo $id;
+		$user=User::findFirst("id=".$id);
+		$p=Projet::find("idClient=".$id);
+		$this->view->setVars(array("user"=>$user, "projects"=>$p));
 		
 	}
 }
