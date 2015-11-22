@@ -7,10 +7,36 @@ class AuthorController extends DefaultController{
 		$this->model="User";
 	}
 	public function ProjectsAction($id=NULL){
+		
 		$user=User::findFirst("id=".$id);
  		$p=Projet::find("idAuthor=".$id);
-		$this->jquery->bootstrap()->htmlProgressbar("pb1","success",80)->setStriped(true)->setActive(true)->showcaption(true);
-		$this->jquery->compile($this->view);
-		$this->view->setVars(array("user"=>$user, "projects"=>$p));
+ 		//calcul du poids de chaque projet
+ 		foreach ($p as $projet){
+ 			$u=Usecase::find("idProjet=".$projet->getId());
+ 			$totalPoid=0;
+ 			$avancement=0;
+ 			$avancementFinal=0;
+ 			$useCaseAccomplie=0;
+ 			foreach ($u as $usecase){
+ 				$totalPoid=$totalPoid + $usecase->getPoids();
+ 				if ($usecase->getAvancement()==100){
+ 					$avancement=$avancement+$usecase->getPoids();
+ 				}
+ 			}
+ 			$avancementFinal=$avancement/$totalPoid;
+ 			$avancementFinal=$avancementFinal*100;
+ 			$avancementFinal=floor($avancementFinal);
+ 			$colorProgressBar="";
+ 			if ($avancementFinal<=50){
+ 				$colorProgressBar="warning";
+ 			}else{
+ 				$colorProgressBar="success";
+ 			}
+ 			$this->jquery->bootstrap()->htmlProgressbar($projet->getId(),$colorProgressBar,$avancementFinal)->setStriped(true)->setActive(true)->showcaption(true);
+ 			$this->jquery->compile($this->view);
+ 		}
+		
+		$this->view->setVars(array("user"=>$user, "projects"=>$p));	
 	}
+	
 }

@@ -8,7 +8,7 @@
 			<tr>
 				<td>{{project.toString()}}</td>
 				<td class="col-md-7">
-					{{q["pb1"]}}
+					{{q[project.getId()]}}
 				</td>
 				<td class="td-center">Reste {{project.getJourRestant()}} jours</td>
 				<td class="td-center"><a class="btn btn-primary" href="">Ouvrir...</a></td>
