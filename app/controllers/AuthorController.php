@@ -57,7 +57,17 @@ class AuthorController extends DefaultController{
 	
 	public function projectAction($id=NULL)
 	{
+		$p=Projet::findFirst("id=".$id);
+		$user=User::findFirst("id=".$p->getId());
 		
+		//image a mettre
+		if($p->getImage() == NULL){
+			$source="../../public/img/increase.png";
+		}else{
+			$source=$p->getImage();
+		}
+		
+		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source));
 	}
 	
 }
