@@ -27,7 +27,9 @@ class AuthorController extends DefaultController{
  			$avancementFinal=$avancementFinal*100;
  			$avancementFinal=floor($avancementFinal);
  			$colorProgressBar="";
- 			if ($avancementFinal<=50){
+ 			if ($avancementFinal<=30){
+ 				$colorProgressBar="danger";
+ 			}elseif ($avancementFinal<=70){
  				$colorProgressBar="warning";
  			}else{
  				$colorProgressBar="success";
