@@ -50,7 +50,7 @@ class AuthorController extends DefaultController{
  			$this->jquery->compile($this->view);
  		}
 		
-		$this->view->setVars(array("user"=>$user, "projects"=>$p,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher-> getControllerName(),"a"=>$TempsEcoule,"b"=>$tempsTotal));	
+		$this->view->setVars(array("user"=>$user, "projects"=>$p,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher-> getControllerName()));	
 	}
 	
 }
