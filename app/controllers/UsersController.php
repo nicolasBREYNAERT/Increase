@@ -49,10 +49,12 @@ class UsersController extends DefaultController{
 			}
 			$this->jquery->bootstrap()->htmlProgressbar($projet->getId(),$colorProgressBar,$avancementFinal)->setStriped(true)->setActive(true)->showcaption(true);
 			$this->jquery->compile($this->view);
+			$this->jquery->getOnClick(".btn , .ouvrir","","#content",array("attr"=>"data-ajax"));
 		}
 		
 		$this->view->setVars(array("user"=>$user, "projects"=>$p,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher->getControllerName()));
 		
 	}
+
 }
 
