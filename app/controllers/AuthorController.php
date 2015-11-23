@@ -47,10 +47,17 @@ class AuthorController extends DefaultController{
  				$colorProgressBar="warning";
  			}
  			$this->jquery->bootstrap()->htmlProgressbar($projet->getId(),$colorProgressBar,$avancementFinal)->setStriped(true)->setActive(true)->showcaption(true);
- 			$this->jquery->compile($this->view);
+ 			
  		}
-		
+ 		$this->jquery->getOnClick(".btn , .ouvrir","","#content",array("attr"=>"data-ajax"));
+ 		$this->jquery->compile($this->view);
+ 		$this->view->pick("author/projects");
 		$this->view->setVars(array("user"=>$user, "projects"=>$p,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher-> getControllerName()));	
+	}
+	
+	public function projectAction($id=NULL)
+	{
+		
 	}
 	
 }
