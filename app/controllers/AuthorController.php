@@ -59,6 +59,23 @@ class AuthorController extends DefaultController{
 	{
 		$p=Projet::findFirst("id=".$id);
 		$user=User::findFirst("id=".$p->getId());
+		$usecases=Usecase::find("idProjet=".$p->getId());
+		
+		//génération des progress barre pour chaque projet et des taches associés s'il y en as
+		foreach ($usecases as $u){
+			//progressbar
+			$avancement=$u->getAvancement();
+			$this->jquery->bootstrap()->htmlProgressbar($u->getCode(),"success",$avancement)->setStriped(true)->setActive(true)->showcaption(true);
+			//taches
+			$t=Tache::find("codeUseCase='".$u->getCode()."'");
+			$nbTache="-";
+			//compte le nombre de taches
+			foreach ($t as $taches){
+				$nbTache=$nbTache+1;
+			}	
+			//mettre dans la vue mais COMMENT  ????????
+			$t=NULL;
+		}
 		
 		//image a mettre
 		if($p->getImage() == NULL){
@@ -66,8 +83,8 @@ class AuthorController extends DefaultController{
 		}else{
 			$source=$p->getImage();
 		}
-		
-		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source));
+		$this->jquery->compile($this->view);
+		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source,"usecases"=>$usecases));
 	}
 	
 }
