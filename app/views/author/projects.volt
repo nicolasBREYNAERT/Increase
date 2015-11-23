@@ -16,4 +16,6 @@
 		{% endfor %}
 		</tbody>
 	</table>
+	{{a}}
+	{{b}}
 </html>
