@@ -8,7 +8,7 @@
   				<tr>
   					<td class="col-md-4"><b>{{ usecase.getNom() }} [{{ usecase.getPoids() }}]</b></td>
   					<td class="col-md-6">{{q[usecase.getCode()]}}</td>
-  				<td class="col-md-2"><b><center><a class="" href="">{{ usecase.getNbTache() }}</a></center></b></td>
+  				<td class="col-md-2"><b><center><a class="" href='{{url.get(baseHref~"/author/")}}' data-ajax="{{ baseHref ~ "/author/"  }}">{{ usecase.getNbTache() }}</a></center></b></td>
   			</tr>
   		{% endfor %}
   	</table>

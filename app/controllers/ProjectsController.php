@@ -17,8 +17,12 @@ class ProjectsController extends DefaultController{
 			$avancement=$u->getAvancement();
 			$this->jquery->bootstrap()->htmlProgressbar($u->getCode(),"success",$avancement)->setStriped(true)->setActive(true)->showcaption(true);
 		}
+		
+		
+		
+		
 		$this->jquery->compile($this->view);
-		$this->view->setVars(array("usecases"=>$usecases));
+		$this->view->setVars(array("usecases"=>$usecases,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher-> getControllerName()));
 	}
 }
 

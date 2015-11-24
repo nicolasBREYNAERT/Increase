@@ -4,8 +4,8 @@
 		<img src="{{ source }}" alt="img" class="img-rounded">
 	</div>
 	<div class="col-md-10">
-		<div class="col-md-12 bg-warning" style="width:100%;padding:8px;">
-				<h3><b>Projet.{{ project.getNom() }} [{{ user.getIdentite() }}]</b></h3>
+		<div class="col-md-12 " style="width:100%;padding:8px;">
+				<legend><b>Projet.{{ project.getNom() }} [{{ user.getIdentite() }}]</b></legend>
 		</div>
 		<div class="col-md-12 bg-warning" style="width:100%;padding:8px;margin-top:10px;margin-bottom:10px"><h3>Détail du projet</h3>
   			<div class="col-md-12">
