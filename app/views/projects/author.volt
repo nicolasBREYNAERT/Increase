@@ -1,6 +1,5 @@
-<div class="col-md-12 bg-warning" style="width:100%;border:8px outset #FFCC99;padding:0px;margin-top:10px">	
+<div class="col-md-12 bg-warning" style="width:100%;padding:0px;">	
 <div class="col-md-8" style="font-size:20px;margin:5px">Mes Uses Cases</div>
-<div class="col-md-2" style="margin:5px"><a class="btn btn-success masquer" href="" data-ajax="">Masquer les Uses Cases</a></div>
   		<table class="table table-striped">
   			<thead>
   			</thead>

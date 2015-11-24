@@ -73,8 +73,7 @@ class AuthorController extends DefaultController{
 		}else{
 			$source=$p->getImage();
 		}
-		$this->jquery->getOnClick(".btn , .affciher","","#detailProject",array("attr"=>"data-ajax"));
-		
+		$this->jquery->getOnClick(".btn , .afficher","","#detailProject",array("attr"=>"data-ajax","jsCallback"=>"$('#detailProject').slideToggle('slow');"));
 		$this->jquery->compile($this->view);
 		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>"Projects",));
 	}
