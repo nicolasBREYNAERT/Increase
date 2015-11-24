@@ -15,21 +15,11 @@
        			<div class="col-md-6"><b>Début [{{ project.getDateLancement() }}]</b></div>
        			<div class="col-md-6"><b>Fin prévue [{{ project.getDateFinPrevue() }}]</b></div>
       		</div> 	
-      	</div>		
-      	<div class="col-md-12 bg-warning" style="width:100%;border:8px outset #FFCC99;padding:8px;margin-top:10px">
-      		<h3>Mes Uses Cases</h3>
-  			<table class="table">
-  				<thead></thead>
-  				<tbody></tbody>
-  				{% for usecase in usecases %}
-  					<tr>
-  						<td class="col-md-4"><b>{{ usecase.getNom() }} [{{ usecase.getPoids() }}]</b></td>
-  						<td class="col-md-6">{{q[usecase.getCode()]}}</td>
-  						<td class="col-md-2"><a class="" href="">{{ }}</a></td>
-  					</tr>
-  				{% endfor %}
-  			</table>
+      	</div>	
+      	<div class="detailProject col-md-12" id="detailProject" style="margin-top:10px">
+      		<a class="btn btn-success afficher" href='{{url.get(baseHref~"/author/"~project.getId()~"/"~user.getId())}}' data-ajax="{{ baseHref ~ "/author/" ~ project.getId()~"/"~user.getId() }}">Afficher les Uses Cases</a>
       	</div>		
 	</div>
 </div>
 </html>
+{{script_foot}}

@@ -58,23 +58,13 @@ class AuthorController extends DefaultController{
 	public function projectAction($id=NULL)
 	{
 		$p=Projet::findFirst("id=".$id);
-		$user=User::findFirst("id=".$p->getId());
-		$usecases=Usecase::find("idProjet=".$p->getId());
+		$user=User::findFirst("id=".$p->getIdAuthor());
 		
-		//génération des progress barre pour chaque projet et des taches associés s'il y en as
+		//génération des progress barre pour chaque usecase 
 		foreach ($usecases as $u){
 			//progressbar
 			$avancement=$u->getAvancement();
 			$this->jquery->bootstrap()->htmlProgressbar($u->getCode(),"success",$avancement)->setStriped(true)->setActive(true)->showcaption(true);
-			//taches
-			$t=Tache::find("codeUseCase='".$u->getCode()."'");
-			$nbTache="-";
-			//compte le nombre de taches
-			foreach ($t as $taches){
-				$nbTache=$nbTache+1;
-			}	
-			//mettre dans la vue mais COMMENT  ????????
-			$t=NULL;
 		}
 		
 		//image a mettre
@@ -83,8 +73,10 @@ class AuthorController extends DefaultController{
 		}else{
 			$source=$p->getImage();
 		}
+		$this->jquery->getOnClick(".btn , .affciher","","#detailProject",array("attr"=>"data-ajax"));
+		
 		$this->jquery->compile($this->view);
-		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source,"usecases"=>$usecases));
+		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>"Projects",));
 	}
 	
 }
