@@ -1,5 +1,5 @@
 <html>
-	<img src="{{ project.getImage() }}" alt="img" class="img-rounded">
+	<img src="{{ source() }}" alt="img" class="img-rounded">
 	<div><legend>Projet.{{ project.getNom() }} [{{ user.getIdentite() }}]</legend></div>
 	
 	

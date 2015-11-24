@@ -17,3 +17,4 @@
 		</tbody>
 	</table>
 </html>
+{{script_foot}}
