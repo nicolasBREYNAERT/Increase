@@ -60,7 +60,7 @@ class AuthorController extends DefaultController{
 		$p=Projet::findFirst("id=".$id);
 		$user=User::findFirst("id=".$p->getIdAuthor());
 		
-		//génération des progress barre pour chaque usecase 
+		//gï¿½nï¿½ration des progress barre pour chaque usecase 
 		foreach ($usecases as $u){
 			//progressbar
 			$avancement=$u->getAvancement();
