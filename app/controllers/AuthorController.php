@@ -58,7 +58,14 @@ class AuthorController extends DefaultController{
 	public function projectAction($id=NULL)
 	{
 		$p=Projet::findFirst("id=".$id);
-		$user=User::findFirst("id=".$p->getId());
+		$user=User::findFirst("id=".$p->getIdAuthor());
+		
+		//génération des progress barre pour chaque usecase 
+		foreach ($usecases as $u){
+			//progressbar
+			$avancement=$u->getAvancement();
+			$this->jquery->bootstrap()->htmlProgressbar($u->getCode(),"success",$avancement)->setStriped(true)->setActive(true)->showcaption(true);
+		}
 		
 		//image a mettre
 		if($p->getImage() == NULL){
@@ -66,8 +73,9 @@ class AuthorController extends DefaultController{
 		}else{
 			$source=$p->getImage();
 		}
-		
-		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source));
+		$this->jquery->getOnClick(".btn , .afficher","","#detailProject",array("attr"=>"data-ajax","jsCallback"=>"$('#detailProject').slideToggle('slow');"));
+		$this->jquery->compile($this->view);
+		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>"Projects",));
 	}
 	
 }
