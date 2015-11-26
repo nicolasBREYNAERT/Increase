@@ -4,4 +4,5 @@ class TachesController extends DefaultController{
 		parent::initialize();
 		$this->model="Tache";
 	}
+	
 }

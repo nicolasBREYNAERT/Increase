@@ -11,18 +11,19 @@ class ProjectsController extends DefaultController{
 		$p=Projet::findFirst("id=".$idProjet);
 		$usecases=Usecase::find("idProjet=".$p->getId());
 		
-		//g�n�ration des progress barre pour chaque usecase
+		
+		//génération des progress barre pour chaque usecase
 		foreach ($usecases as $u){
 			//progressbar
 			$avancement=$u->getAvancement();
 			$this->jquery->bootstrap()->htmlProgressbar($u->getCode(),"success",$avancement)->setStriped(true)->setActive(true)->showcaption(true);
+			$this->jquery->getOnClick("#bt-".$u->getCode(),"","#divUseCase-".$u->getCode(),array("attr"=>"data-ajax","jsCallback"=>"$('.trUseCase-".$u->getCode()."').slideToggle('slow');$('.divUseCase-".$u->getCode()."').slideToggle('slow');"));
 		}
 		
 		
 		
-		
 		$this->jquery->compile($this->view);
-		$this->view->setVars(array("usecases"=>$usecases,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>$this->dispatcher-> getControllerName()));
+		$this->view->setVars(array("usecases"=>$usecases,"siteUrl"=>$this->url->getBaseUri(),"baseHref"=>"usecases"));
 	}
 	
 	public function equipeAction($id=NULL){
