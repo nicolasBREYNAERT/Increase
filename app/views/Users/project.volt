@@ -7,7 +7,6 @@
 				<legend><b>Projet.{{ project.getNom() }} [{{ user.getIdentite() }}]</b></legend>
 		</div>
 		<div class="col-md-12 bg-warning" style="width:100%;padding:8px;margin-top:10px;margin-bottom:10px"><h3>Détail du projet</h3>
-		<hr>
   			<div class="col-md-12">
        			<h4><b>Description</b></h4>
 	 			{{ project.getDescription() }}
@@ -15,11 +14,11 @@
        			<div class="col-md-6"><b>Début [{{ project.getDateLancement() }}]</b></div>
        			<div class="col-md-6"><b>Fin prévue [{{ project.getDateFinPrevue() }}]</b></div>
       		</div> 	
-      	</div>	
-      	<br>
-      	<div class="detailProject col-md-12" id="detailProject" style="margin-top:10px;">
+      	</div>
+      	<div class="detailProject col-md-12 bg-warning" id="detailProject" style="margin-top:10px;">
       			
       	</div>
+      	<a class="btn btn-primary" style="margin-top:20px" id="btnMessages">Messages</a>
       			
 	</div>
 </div>

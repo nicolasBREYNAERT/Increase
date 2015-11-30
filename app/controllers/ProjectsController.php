@@ -27,16 +27,26 @@ class ProjectsController extends DefaultController{
 	}
 	
 	public function equipeAction($id=NULL){
+		$devs=User::find();
 		$p=Projet::findFirst("id=".$id);
 		$usecases=Usecase::find("idProjet=".$p->getId());
-		
-		foreach ($usecases as $u){
-			$dev=User::findFirst("id=".$u->getIdDev());
-			//ajuoter des objet entre eux
+		$dev=array();
+		$poids=array();
+		$totalUc=0;
+		foreach ($usecases as $uc){
+			$totalUc=$totalUc+$uc->getPoids();
+		}
+		foreach ($usecases as $uc){
+			$u=User::findFirst("id=".$uc->getIdDev());
+			$dev[$u->getId()]=$u;
+			$poids[$u->getId()]=($poids[$u->getId()]+$uc->getPoids());
+		}
+		foreach ($devs as $de){
+			$poids[$de->getId()]=floor($poids[$de->getId()]/$totalUc*100);
 		}
 		
-		$this->view->setVars(array("dev"=>$dev));
-
+		$this->view->setVars(array("dev"=>$dev,"poids"=>$poids,"p"=>$totalUc));
+		
 		
 		
 	}
