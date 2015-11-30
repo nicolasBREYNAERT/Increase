@@ -24,10 +24,11 @@ class UseCasesController extends DefaultController{
 					$Avt=$taches[$i-1]->getId();
 					$this->jquery->click(".".$taches[$i]->getId(),"$('#modifier-".$taches[$i]->getId()."').slideToggle('slow');$('#supprimer-".$taches[$i]->getId()."').slideToggle('slow');$('#icon-".$taches[$i]->getId()."').slideToggle('fast');$('#modifier-".$Apr."').hide(100);$('#modifier-".$Avt."').hide(100);$('#supprimer-".$Apr."').hide(100);$('#supprimer-".$Avt."').hide(100);$('#icon-".$Apr."').hide();$('#icon-".$Avt."').hide();");
 				}
-				
 			}
 		}
+		$this->jquery->getOnClick(".modifier","","#modifier-".$usecase->getCode(),array("attr"=>"data-ajax","jsCallback"=>"$('#modifier-".$usecase->getCode()."').show(400);"));
+		
 		$this->jquery->compile($this->view);
-		$this->view->setVars(array("taches"=>$taches,"code"=>$code,"n"=>$i));
+		$this->view->setVars(array("taches"=>$taches,"code"=>$code,"n"=>$i,"usecase"=>$usecase));
 	}
 }
