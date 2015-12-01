@@ -80,10 +80,19 @@ class UsersController extends DefaultController{
 			$source=$p->getImage();
 		}
 		
-		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source));
-		$this->jquery->get("Projects/equipe/".$p->getId(),"#detailProject");
+		$message=Message::find("idProjet=".$p->getId()." AND idFil is NULL");
+		$nbMsg=0;
 		
+		foreach ($message as $msg){
+			$nbMsg=$nbMsg+1;
+		}
+		
+		$this->view->setVars(array("project"=>$p,"user"=>$user,"source"=>$source, "nbMsg"=>$nbMsg));
+		$this->jquery->get("Projects/equipe/".$p->getId(),"#detailProject");
+		$this->jquery->click(".btnMessages", "$('#divMessages').slideToggle('slow');");
+		$this->jquery->get("Projects/messages/".$p->getId(),"#divMessages");
 		$this->jquery->compile($this->view);
+		
 		
 		
 	}

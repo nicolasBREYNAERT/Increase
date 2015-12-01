@@ -46,9 +46,19 @@ class ProjectsController extends DefaultController{
 		}
 		
 		$this->view->setVars(array("dev"=>$dev,"poids"=>$poids,"p"=>$totalUc));
+	}
+	
+	public function messagesAction($id=NULL){
+		$p=Projet::findFirst("id=".$id);
+		$message=Message::find("idProjet=".$p->getId()." AND idFil is NULL");
 		
+		foreach ($message as $msg){
+			$reponse=Message::find("idFil=".$msg->getId());
+		}
 		
-		
+		$this->view->setVars(array("message"=>$message, "reponse"=>$reponse));
+		$this->jquery->click(".clickMessage", "$('#discussion').slideToggle('slow');");
+		$this->jquery->compile($this->view);
 	}
 }
 

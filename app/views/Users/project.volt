@@ -18,8 +18,11 @@
       	<div class="detailProject col-md-12 bg-warning" id="detailProject" style="margin-top:10px;">
       			
       	</div>
-      	<a class="btn btn-primary" style="margin-top:20px" id="btnMessages">Messages</a>
-      			
+      	<a class="btn btn-primary btnMessages" style="margin-top:20px" id="btnMessages">{{ nbMsg }} Message(s)</a>
+      		
+      	<div class="divMessages col-md-12" id="divMessages" style="display:none;width:100%;padding:8px;margin-top:10px;margin-bottom:10px">
+      	
+      	</div>	
 	</div>
 </div>
 <div class="clearfix"></div>
