@@ -2,7 +2,7 @@
 	<thead></thead>
 	<tbody>
 		{% for tache in taches %}
-			<tr id="{{tache.getId()}}" class="{{tache.getId()}} bg-success" style="cursor:pointer">
+			<tr id="{{tache.getId()}} " class="{{tache.getId()}} bg-success tache" style="cursor:pointer">
 					<td class=""><b>{{ tache.getLibelle() }}</b> [{{ tache.getAvancement() }}]</td>
 					<td class=" col-md-5"></td>
 					<td class=""><b>{{ tache.getDate() }}</b></td>

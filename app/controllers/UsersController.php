@@ -61,7 +61,7 @@ class UsersController extends DefaultController{
  			}
  			$this->jquery->bootstrap()->htmlProgressbar($projet->getId(),$colorProgressBar,$avancementFinal)->setStriped(true)->setActive(true)->showcaption(true);
  			$this->jquery->compile($this->view);
-			$this->jquery->getOnClick(".btn , .ouvrir","","#content",array("attr"=>"data-ajax"));
+			$this->jquery->getOnClick(".ouvrir","","#content",array("attr"=>"data-ajax"));
 			
 		}
 		

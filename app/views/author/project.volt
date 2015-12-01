@@ -5,7 +5,7 @@
 	</div>
 	<div class="col-md-10">
 		<div class="col-md-12 " style="width:100%;padding:8px;">
-				<legend><b>Projet.{{ project.getNom() }} [{{ user.getIdentite() }}]</b></legend>
+				<legend><div class="col-md-10"><b>Projet.{{ project.getNom() }} [{{ user.getIdentite() }}]</b></div><a class="btn btn-primary precedent" href='{{url.get("author/projects/"~user.getId())}}' data-ajax="{{"author/projects/"~user.getId()}}" style="margin-bottom:5px">liste des projets</a></legend>
 		</div>
 		<div class="col-md-12 bg-warning" style="width:100%;padding:8px;margin-top:10px;margin-bottom:10px"><h3>Détail du projet</h3>
   			<div class="col-md-12">
