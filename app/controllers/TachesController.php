@@ -1,13 +1,22 @@
 <?php
+use Ajax\Jquery;
 class TachesController extends DefaultController{
 	public function initialize(){
 		parent::initialize();
 		$this->model="Tache";
 	}
 	
-	public function updateAction($id){
+	public function modificationAction($id){
 		$tache=Tache::findFirst("id=".$id);
 		$this->view->setVars(array("tache"=>$tache));
+		$this->jquery->postFormOnClick(".validate","Taches/update","modifier","#modifie","");
+		
+		$use=Usecase::findFirst("code='".$tache->getCodeUseCase()."'");
+		$this->jquery->click(".validate","$('#modifier-".$use->getCode()."').hide('400')");
+		$this->jquery->click(".cancel","$('#modifier-".$use->getCode()."').hide('400')");
+		
+		$this->jquery->compile($this->view);
+		
 	}
 	
 	public function deleteAction($id){
@@ -15,6 +24,37 @@ class TachesController extends DefaultController{
 	}
 	
 	public function insertAction(){
+		
+	}
+	
+	public function updateAction(){
+		if($this->request->isPost()){
+			$object=$this->getInstance(@$_POST["id"]);
+			$this->setValuesToObject($object);
+			if($_POST["id"]){
+				try{
+					$object->save();
+					$msg=new DisplayedMessage($this->model." `{$object->toString()}` mis à jour");
+				}catch(\Exception $e){
+					$msg=new DisplayedMessage("Impossible de modifier l'instance de ".$this->model,"danger");
+				}
+			}else{
+				try{
+					$object->save();
+					$msg=new DisplayedMessage("Instance de ".$this->model." `{$object->toString()}` ajoutée");
+				}catch(\Exception $e){
+					$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
+				}
+			}
+		}
+		
+		$use=$object->getUsecase();
+		
+		$this->view->disable();
+		
+		$this->jquery->json("json/taches/".$_POST["id"],"get","{}",NULL,"id","$('#divUsecaes-'".$use->getCode()."')",true);
+		echo $this->jquery->compile();
+		
 		
 	}
 }

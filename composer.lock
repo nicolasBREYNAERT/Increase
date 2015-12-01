@@ -163,12 +163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jcheron/phalcon-jquery.git",
-                "reference": "63bf24824f3b042fa941bf7d46d57f381e274415"
+                "reference": "c831e196749b5d967821e8e3d6f1e437552834e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jcheron/phalcon-jquery/zipball/63bf24824f3b042fa941bf7d46d57f381e274415",
-                "reference": "63bf24824f3b042fa941bf7d46d57f381e274415",
+                "url": "https://api.github.com/repos/jcheron/phalcon-jquery/zipball/c831e196749b5d967821e8e3d6f1e437552834e2",
+                "reference": "c831e196749b5d967821e8e3d6f1e437552834e2",
                 "shasum": ""
             },
             "require": {
@@ -198,20 +198,20 @@
                 "jquery",
                 "phalcon"
             ],
-            "time": "2015-11-24 01:36:23"
+            "time": "2015-11-30 00:31:08"
         },
         {
             "name": "twitter/bootstrap",
-            "version": "v3.3.5",
+            "version": "v3.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482"
+                "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16b48259a62f576e52c903c476bd42b90ab22482",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/81df608a40bf0629a1dc08e584849bb1e43e0b7a",
+                "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a",
                 "shasum": ""
             },
             "replace": {
@@ -249,7 +249,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2015-06-16 16:13:22"
+            "time": "2015-11-24 19:37:05"
         }
     ],
     "packages-dev": [],
