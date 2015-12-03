@@ -27,9 +27,10 @@ class UseCasesController extends DefaultController{
 			}
 		}
 		$this->jquery->click(".tache","$('#modifier-".$usecase->getCode()."').hide(400);");
-		$this->jquery->getOnClick(".modifier","","#modifier-".$usecase->getCode(),array("attr"=>"data-ajax","jsCallback"=>"$('#modifier-".$usecase->getCode()."').show(400);"));
+		$this->jquery->getOnClick(".modifier-".$usecase->getCode(),"","#modifier-".$usecase->getCode(),array("attr"=>"data-ajax","jsCallback"=>"$('#modifier-".$usecase->getCode()."').show(400);"));
 		
 		$this->jquery->click(".ajouter","$('#modifier-".$usecase->getCode()."').hide(400);");
+		$this->jquery->getOnClick(".ajouter", "","#modifier-".$usecase->getCode(),array("attr"=>"data-ajax","jsCallback"=>"$('#modifier-".$usecase->getCode()."').show(400);"));
 		
 		$this->jquery->compile($this->view);
 		$this->view->setVars(array("taches"=>$taches,"code"=>$code,"n"=>$i,"usecase"=>$usecase));

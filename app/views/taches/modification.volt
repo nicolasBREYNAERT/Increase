@@ -7,7 +7,7 @@
 		<div class="col-md-12"><input type="text" name="libelle" id="libelle" value="{{tache.getLibelle()}}" placeholder="Entrez un libelle" class="form-control" ></div>
 		<div class="col-md-4">avancement (en%) :</div>
 		<div class="col-md-6">Date :</div>
-		<div class="col-md-4"><input type="text" name="poid" id="poid" value="{{tache.getAvancement()}}" class="form-control"></div>
+		<div class="col-md-4"><input type="text" name="avancement" id="avancement" value="{{tache.getAvancement()}}" class="form-control"></div>
 		<div class="col-md-6"><input type="date" name="date" id="date" value="{{tache.getDate()}}" class="form-control"></div>
 	</div>
 	<div class="form-group col-md-3">

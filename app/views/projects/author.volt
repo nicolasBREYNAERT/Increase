@@ -8,7 +8,7 @@
   			{% for usecase in usecases %}
   				<tr>
   					<td class="col-md-4"><b>{{ usecase.getNom() }} [{{ usecase.getPoids() }}]</b></td>
-  					<td class="col-md-6">{{q[usecase.getCode()]}}</td>
+  					<td class="col-md-6" id="progressbar{{usecase.getCode()}}">{{q[usecase.getCode()]}}</td>
   					<td class="col-md-2"><b><center><a class="taches" id='bt-{{usecase.getCode()}}' href='{{url.get(baseHref~"/taches/"~usecase.getCode())}}' data-ajax="{{ baseHref ~ "/taches/"~usecase.getCode()  }}">{{ usecase.getNbTache() }}</a></center></b></td>
   				</tr>
   				<tr class="trUseCase-{{usecase.getCode()}}" style="display:none">
