@@ -19,8 +19,11 @@ class TachesController extends DefaultController{
 		
 	}
 	
-	public function ajouterAction(){
-		
+	public function ajouterAction($code){
+		$usecase=Usecase::findFirst("code='".$code."'");
+		$this->view->setVars(array("usecase"=>$usecase));
+		$this->jquery->postFormOnClick(".validate","Taches/insert","ajouter","#ajouter","");
+		$this->jquery->compile($this->view);
 	}
 	
 	public function deleteAction($id){
@@ -28,7 +31,46 @@ class TachesController extends DefaultController{
 	}
 	
 	public function insertAction(){
+		if($this->request->isPost()){
+			$object=$this->getInstance(@$_POST["id"]);
+			$this->setValuesToObject($object);
+			if($_POST["id"]){
+				try{
+					$object->save();
+					$msg=new DisplayedMessage($this->model." `{$object->toString()}` mis à jour");
+				}catch(\Exception $e){
+					$msg=new DisplayedMessage("Impossible de modifier l'instance de ".$this->model,"danger");
+				}
+			}else{
+				try{
+					$object->save();
+					$msg=new DisplayedMessage("Instance de ".$this->model." `{$object->toString()}` ajoutée");
+				}catch(\Exception $e){
+					$msg=new DisplayedMessage("Impossible d'ajouter l'instance de ".$this->model,"danger");
+				}
+			}
+		}
 		
+		
+		$use=$object->getUsecase();
+		$taches=$use->getTaches();
+		$avt=0;
+		$i=0;
+		foreach($taches as $t){
+			$avt=$avt+$t->getAvancement();
+			$i=$i+1;
+		}
+		$avt=$avt/$i;
+		
+		$use->setAvancement($avt);
+		$use->save();
+		
+		$this->view->disable();
+		
+		$this->jquery->json("json/usecase/".$use->getCode(),"get","{}","$('#".$use->getCode()."').css('width', data['avancement']+'%').attr('aria-valuenow', data['avancement']).html(data['avancement']+'%');","id","$('progressbar".$use->getCode()."')",true);
+		
+		echo $this->jquery->compile();
+	
 	}
 	
 	public function updateAction(){

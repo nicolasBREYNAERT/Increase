@@ -11,7 +11,7 @@
 		{% endfor %}
 			<tr>
 				<td colspan="4">
-					<a id="ajouter" class="btn btn-primary ajouter" href='{{url.get("taches/ajouter/") }}' data-ajax="{{"taches/ajouter"}}">+ Ajouter une tâche</a>
+					<a id="ajouter" class="btn btn-primary ajouter" href='{{url.get("taches/ajouter/"~usecase.getCode()) }}' data-ajax="{{"taches/ajouter/"~usecase.getCode()}}">+ Ajouter une tâche</a>
 					{% for tache in taches %}
 						<a id="modifier-{{tache.getId()}}" class="btn btn-primary modifier-{{usecase.getCode()}}" href='{{url.get("taches/modification/"~tache.getId()) }}' data-ajax="{{"taches/modification/"~tache.getId() }}" style="display:none">Modifier...</a>
 						<a id="supprimer-{{tache.getId()}}" class="btn btn-primary supprimer" href='{{url.get("taches/delete/"~tache.getId()) }}' data-ajax="{{"taches/delete/"~tache.getId() }}" style="display:none">Supprimer</a>
