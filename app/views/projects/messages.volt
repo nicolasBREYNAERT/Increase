@@ -1,35 +1,26 @@
-<div class="col-md-12">
+{% for msg in message %}
+		<div class="col-md-12 clickMessage" style="cursor:pointer;">
+			<div class="col-md-6">Message.{{msg.getUser()}} - {{msg.getObjet()}}</div>
+			<div class="col-md-2"></div>
+			<div class="col-md-4">[{{msg.getDate()}}]</div>
+		</div>
+		<hr>
+		<div class="discussion" id="discussion" style="display:none">
+		<div class="panel panel-info">
+				<div class="panel-heading"><b>Message de {{msg.getUser()}} </b></div>
+    			<div class="panel-body"><p><i>{{msg.getContent()}}</i></p></div>
+  		</div>		
+			{% for rep in reponse %}
+			<div class="panel panel-info">
+				<div class="panel-heading"><b>Réponde de {{rep.getUser()}}</b></div>
+    			<div class="panel-body"><p><i>{{rep.getContent()}}</i></p></div>
+  			</div>		
+			{% endfor %}
+			<a class="btn btn-primary btn-sm">Répondre</a>
+		</div>
+{% endfor %}
+<div class="col-md-8"></div class="col-md-4"><div><a class="btn btn-info" align="right" style="padding-left:40px;padding-right:40px;">+ Nouveau message</a></div>
 
-<table class="table table-striped bg-warning">
-	<tbody>
-		{% for msg in message %}
-		<tr class="clickMessage"  style="cursor:pointer">
-			<td>Message.{{msg.getUser()}} - {{msg.getObjet()}}</td>
-			<td align="right">[{{msg.getDate()}}]</td>
-		</tr>
-		<tr class="discussion" id="discussion" style="display:none" >
-			<td colspan="2">
 
-				<table class="table table-striped bg-success col-md-12">
-				<tbody>
-					<tr>
-						<td><b>Message de {{msg.getUser()}} </b><br>
-						<i>{{msg.getContent()}}</i></td>
-					<tr>
-				{% for rep in reponse %}
-					<tr>
-						<td><b>Réponde de {{rep.getUser()}}</b><br>
-						<i>{{rep.getContent()}}</i></td>
-					</tr>
-				{% endfor %}
-				</tbody>
-				</table>
-
-			<td>
-		</tr>
-		{% endfor %}
 		
-	</tbody>
-</table>
-</div>
 {{script_foot}}
