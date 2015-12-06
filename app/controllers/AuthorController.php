@@ -18,7 +18,7 @@ class AuthorController extends DefaultController{
  			$avancementFinal=0;
  			$TempsEcoule=0;
  			$tempsTotal=0;
- 			
+ 			 
  			$TempsEcoule=time() - strtotime($projet->getDateLancement());
  			$TempsEcoule=floor($TempsEcoule/86400);
  			
