@@ -72,6 +72,8 @@ class TachesController extends DefaultController{
 		
 		echo "<div id='tachezz".$object->getId()."' class='".$object->getId()." tache col-md-12' style='cursor:pointer;margin-left:-20px;'><div class='col-md-4'><b><span id='libelle'>".$object->getLibelle()."</span></b> <span id='avancement' class='badge'>".$object->getAvancement()."</span></div><div class=' col-md-6'></div><div class='col-md-2'><b><span id='date'>".$object->getDate()."</span></b></div><div class='col-md-1'><span class='glyphicon glyphicon-ok' id='icon-".$object->getId()."' style='display:none'></span></div></div>";
 		
+		//BOUTON EN RELATION A AJOUTER
+		
 		echo $this->jquery->compile();
 	
 	}

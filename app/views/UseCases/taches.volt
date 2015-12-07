@@ -19,6 +19,7 @@
 						<a id="modifier-{{tache.getId()}}" class="btn btn-primary modifier-{{usecase.getCode()}}" href='{{url.get("taches/modification/"~tache.getId()) }}' data-ajax="{{"taches/modification/"~tache.getId() }}" style="display:none">Modifier...</a>
 						<a id="supprimer-{{tache.getId()}}" class="btn btn-primary supprimer" href='{{url.get("taches/delete/"~tache.getId()) }}' data-ajax="{{"taches/delete/"~tache.getId() }}" style="display:none">Supprimer</a>
 					{% endfor %}
+					<!-- ICI LES BOUTONS -->
 				</td>
 			</tr>
 	</tbody>
