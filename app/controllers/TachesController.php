@@ -22,7 +22,7 @@ class TachesController extends DefaultController{
 	public function ajouterAction($code){
 		$usecase=Usecase::findFirst("code='".$code."'");
 		$this->view->setVars(array("usecase"=>$usecase));
-		$this->jquery->postFormOnClick(".validate","Taches/insert","ajouter","#ajouter","");
+		$this->jquery->postFormOnClick(".validate","Taches/insert","frmajouter","#frmajouter");
 		$this->jquery->compile($this->view);
 	}
 	
@@ -51,7 +51,6 @@ class TachesController extends DefaultController{
 			}
 		}
 		
-		
 		$use=$object->getUsecase();
 		$taches=$use->getTaches();
 		$avt=0;
@@ -68,6 +67,8 @@ class TachesController extends DefaultController{
 		$this->view->disable();
 		
 		$this->jquery->json("json/usecase/".$use->getCode(),"get","{}","$('#".$use->getCode()."').css('width', data['avancement']+'%').attr('aria-valuenow', data['avancement']).html(data['avancement']+'%');","id","$('progressbar".$use->getCode()."')",true);
+		
+		
 		
 		echo $this->jquery->compile();
 	

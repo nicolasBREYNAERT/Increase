@@ -1,4 +1,4 @@
-{{ form("Taches/insert", "method": "post", "name":"ajouter", "id":"ajouter") }}
+{{ form("Taches/insert", "method": "post", "name":"frmajouter", "id":"frmajouter") }}
 <fieldset>
 	<legend>Ajout</legend>
 	<div class="form-group col-md-9">
