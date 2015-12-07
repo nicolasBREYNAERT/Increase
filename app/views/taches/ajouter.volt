@@ -12,7 +12,7 @@
 		<div class="col-md-12"><input type="hidden" name="codeUseCase" id="codeUseCase" value="{{usecase.getCode()}}"></div>
 	</div>
 	<div class="form-group col-md-3">
-		<div class="col-md-12"><a type="submit" class="btn btn-primary validate col-md-12" style="margin-bottom:5px;margin-top:20px;" >valider</a></div>
+		<div class="col-md-12"><a type="submit" id="validate" class="btn btn-primary validate col-md-12" style="margin-bottom:5px;margin-top:20px;" >valider</a></div>
 		<div class="col-md-12"><a class="btn btn-primary cancel col-md-12" href="" data-ajax="">Annuler</a></div>
 	</div>
 </fieldset>

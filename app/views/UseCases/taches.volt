@@ -1,6 +1,6 @@
 <table class="table" style="margin-top:0px;margin-bottom:0px;">
 	<thead></thead>
-	<tbody>
+	<tbody >
 		{% for tache in taches %}
 			<tr id="tachezz{{tache.getId()}}" class="{{tache.getId()}} bg-success tache" style="cursor:pointer">
 					<td class=""><b><span id="libelle">{{ tache.getLibelle() }}</span></b> <span id="avancement" class="badge">{{ tache.getAvancement() }}</span></td>
@@ -9,6 +9,9 @@
 					<td><span class="glyphicon glyphicon-ok" id="icon-{{tache.getId()}}" style="display:none"></span></td>
 			</tr>
 		{% endfor %}
+			<tr class="bg-success">
+				<td colspan="4" class="autreAjouter{{usecase.getCode()}}" id="autreAjouter{{usecase.getCode()}}"></td>
+			</tr>
 			<tr>
 				<td colspan="4">
 					<a id="ajouter" class="btn btn-primary ajouter" href='{{url.get("taches/ajouter/"~usecase.getCode()) }}' data-ajax="{{"taches/ajouter/"~usecase.getCode()}}">+ Ajouter une tâche</a>

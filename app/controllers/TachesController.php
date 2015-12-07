@@ -22,7 +22,9 @@ class TachesController extends DefaultController{
 	public function ajouterAction($code){
 		$usecase=Usecase::findFirst("code='".$code."'");
 		$this->view->setVars(array("usecase"=>$usecase));
-		$this->jquery->postFormOnClick(".validate","Taches/insert","frmajouter","#frmajouter");
+		$this->jquery->postFormOnClick(".validate","Taches/insert","frmajouter","#autreAjouter".$usecase->getCode());
+		$this->jquery->click(".validate","$('#modifier-".$usecase->getCode()."').hide('400')");
+		$this->jquery->click(".cancel","$('#modifier-".$usecase->getCode()."').hide('400')");
 		$this->jquery->compile($this->view);
 	}
 	
@@ -68,11 +70,12 @@ class TachesController extends DefaultController{
 		
 		$this->jquery->json("json/usecase/".$use->getCode(),"get","{}","$('#".$use->getCode()."').css('width', data['avancement']+'%').attr('aria-valuenow', data['avancement']).html(data['avancement']+'%');","id","$('progressbar".$use->getCode()."')",true);
 		
-		
+		echo "<div id='tachezz".$object->getId()."' class='".$object->getId()." tache col-md-12' style='cursor:pointer;margin-left:-20px;'><div class='col-md-4'><b><span id='libelle'>".$object->getLibelle()."</span></b> <span id='avancement' class='badge'>".$object->getAvancement()."</span></div><div class=' col-md-6'></div><div class='col-md-2'><b><span id='date'>".$object->getDate()."</span></b></div><div class='col-md-1'><span class='glyphicon glyphicon-ok' id='icon-".$object->getId()."' style='display:none'></span></div></div>";
 		
 		echo $this->jquery->compile();
 	
 	}
+	
 	
 	public function updateAction(){
 		if($this->request->isPost()){
