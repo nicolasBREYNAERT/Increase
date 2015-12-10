@@ -58,17 +58,20 @@ class ProjectsController extends DefaultController{
 		}
 		
 		
+		
+		
 		$this->view->setVars(array("message"=>$message, "reponse"=>$reponse, "projet"=>$p, "user"=>$user));
 		$this->jquery->click(".clickMessage", "$('#discussion').slideToggle('slow');");
 		$this->jquery->click(".clickRep", "$('.nReponse').slideToggle('slow');");
-		$this->jquery->getOnClick(".clickRep","Projects/messageform/".$id,"'#nReponse-'+$(self).attr('data-ajax')");
-		$this->jquery->click(".clickAjout", "$('#nouveauMessage').slideToggle('slow');");
+		$this->jquery->getOnClick(".clickRep","Projects/messageform/".$id."/Répondre à un message/ajoutReponse/","'#nReponse-'+$(self).attr('data-ajax')",array("attr"=>"data-ajax"));
+		$this->jquery->click(".clickAjout", "$('#nMessage').slideToggle('slow');");
+		$this->jquery->getOnClick(".clickAjout","Projects/messageform/".$id."/Ajouter un message/ajoutMessage/NULL","#nMessage");
 		
 		$this->jquery->compile($this->view);
 	}
 	
 
-	public function messageformAction($id=NULL){
+	public function messageformAction($id=NULL,$nom,$nomfrm,$idFil){
 		$p=$this->getInstance($id);
 		$user=User::findFirst();
 		$message=Message::find("idProjet=".$p->getId()." AND idFil is NULL");
@@ -77,9 +80,9 @@ class ProjectsController extends DefaultController{
 			$reponse=Message::find("idFil=".$msg->getId());
 		}
 		
-		$this->view->setVars(array("message"=>$message, "reponse"=>$reponse, "projet"=>$p, "user"=>$user));
-		$this->jquery->postFormOnClick(".clickRep","messages/repondre","ajoutReponse");
-		$this->jquery->postFormOnClick(".clickAjout","messages/nMessage","ajoutMessage");
+		$this->view->setVars(array("message"=>$message, "reponse"=>$reponse, "projet"=>$p, "user"=>$user, "nom"=>$nom, "idFil"=>$idFil, "nomfrm"=>$nomfrm));
+		$this->jquery->postFormOnClick(".validate","messages/repondre","ajoutReponse");
+		$this->jquery->postFormOnClick(".validate","messages/nMessage","ajoutMessage");
 		
 		$this->jquery->compile($this->view);
 		

@@ -6,7 +6,7 @@
 		{% for d in dev %}
 		<tr>
 			<td>{{ d.getIdentite() }}</td>
-			<td>[{{poids[d.getId()]}} %]</td>
+			<td><span class="badge">{{poids[d.getId()]}} %</span></td>
 		</tr>
 		{% endfor %}
 	</tbody>

@@ -25,6 +25,8 @@ class MessagesController extends DefaultController{
 				}
 			}
 		}
+		//AJAX REFRESH LA DIV
+		
 	}
 	
 	public function nMessageAction(){
