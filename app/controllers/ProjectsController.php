@@ -60,7 +60,7 @@ class ProjectsController extends DefaultController{
 		
 		$this->view->setVars(array("message"=>$message, "reponse"=>$reponse, "projet"=>$p, "user"=>$user));
 		$this->jquery->click(".clickMessage", "$('#discussion').slideToggle('slow');");
-		$this->jquery->click(".clickRep", "$('#nReponse').slideToggle('slow');");
+		$this->jquery->click(".clickRep", "$('.nReponse').slideToggle('slow');");
 		$this->jquery->getOnClick(".clickRep","Projects/messageform/".$id,"'#nReponse-'+$(self).attr('data-ajax')");
 		$this->jquery->click(".clickAjout", "$('#nouveauMessage').slideToggle('slow');");
 		
