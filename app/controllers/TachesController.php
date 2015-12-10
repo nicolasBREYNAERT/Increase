@@ -29,7 +29,49 @@ class TachesController extends DefaultController{
 	}
 	
 	public function deleteAction($id){
+		$object=call_user_func($this->model."::findfirst",$id);
+		$use=$object->getUsecase();
+		$bs=$this->jquery->bootstrap();
+		$btYes=$bs->htmlButton("btYes","Supprimer")->setSize("btn-sm");
+		$btYes->getOnClick($this->dispatcher->getControllerName()."/_delete/".$id,"#tampon-".$use->getCode());
+		$btYes->onClick("$('#message').html('');");
+		$btCancel=$bs->htmlButton("btCancel","Annuler")->setSize("btn-sm");
+		$btCancel->onClick("$('#message').html('');");
+		$this->view->setVars(array("object"=>$object));
+		$this->view->pick("main/delete");
+		$this->jquery->compile($this->view);
+	}
+	
+	public function _deleteAction($id){
+		try{
+			$object=call_user_func($this->model."::findfirst",$id);
+			if($object!==NULL){
+				$object->delete();
+				$msg=new DisplayedMessage($this->model." `{$object->toString()}` supprimé(e)");
+			}else{
+				$msg=new DisplayedMessage($this->model." introuvable","warning");
+			}
+		}catch(\Exception $e){
+			$msg=new DisplayedMessage("Impossible de supprimer l'instance de ".$this->model,"danger");
+		}
+		$this->dispatcher->forward(array("controller"=>$this->dispatcher->getControllerName(),"action"=>"index","params"=>array($msg)));
+		$use=$object->getUsecase();
+		$this->jquery->get("UseCases/taches/".$use->getCode(),"#divUseCase-".$use->getCode());
+		$this->view->disable();
+		$taches=$use->getTaches();
+		$avt=0;
+		$i=0;
+		foreach($taches as $t){
+			$avt=$avt+$t->getAvancement();
+			$i=$i+1;
+		}
+		$avt=$avt/$i;
+		$use->setAvancement($avt);
+		$use->save();
+		$this->jquery->json("json/usecase/".$use->getCode(),"get","{}",
+				"$('#bt-".$use->getCode()."').html(data['nbTaches']);$('#".$use->getCode()."').css('width', data['avancement']+'%').attr('aria-valuenow', data['avancement']).html(data['avancement']+'%');","id","$('progressbar".$use->getCode()."')",true);
 		
+		echo $this->jquery->compile();
 	}
 	
 	public function insertAction(){
@@ -68,11 +110,9 @@ class TachesController extends DefaultController{
 		
 		$this->view->disable();
 		
-		$this->jquery->json("json/usecase/".$use->getCode(),"get","{}","$('#".$use->getCode()."').css('width', data['avancement']+'%').attr('aria-valuenow', data['avancement']).html(data['avancement']+'%');","id","$('progressbar".$use->getCode()."')",true);
+		$this->jquery->json("json/usecase/".$use->getCode(),"get","{}","$('#bt-".$use->getCode()."').html(data['nbTaches']);$('#".$use->getCode()."').css('width', data['avancement']+'%').attr('aria-valuenow', data['avancement']).html(data['avancement']+'%');","id","$('progressbar".$use->getCode()."')",true);
 		
-		echo "<div id='tachezz".$object->getId()."' class='".$object->getId()." tache col-md-12' style='cursor:pointer;margin-left:-20px;'><div class='col-md-4'><b><span id='libelle'>".$object->getLibelle()."</span></b> <span id='avancement' class='badge'>".$object->getAvancement()."</span></div><div class=' col-md-6'></div><div class='col-md-2'><b><span id='date'>".$object->getDate()."</span></b></div><div class='col-md-1'><span class='glyphicon glyphicon-ok' id='icon-".$object->getId()."' style='display:none'></span></div></div>";
-		
-		//BOUTON EN RELATION A AJOUTER
+		$this->jquery->get("UseCases/taches/".$use->getCode(),"#divUseCase-".$use->getCode());
 		
 		echo $this->jquery->compile();
 	

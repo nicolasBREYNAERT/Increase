@@ -9,7 +9,7 @@
 					<td><span class="glyphicon glyphicon-ok" id="icon-{{tache.getId()}}" style="display:none"></span></td>
 			</tr>
 		{% endfor %}
-			<tr class="bg-success">
+			<tr class="bg-success" style="display:none">
 				<td colspan="4" class="autreAjouter{{usecase.getCode()}}" id="autreAjouter{{usecase.getCode()}}"></td>
 			</tr>
 			<tr>
@@ -26,4 +26,6 @@
 </table>
 <div class="col-md-12 bg-success" id="modifier-{{usecase.getCode()}}" style="display:none">
 </div>
+<div class="col-md-12" id="supprimer-{{usecase.getCode()}}" style="display:none"></div>
+<div class="col-md-12" id="tampon-{{usecase.getCode()}}" style="display:none"></div>
 {{script_foot}}

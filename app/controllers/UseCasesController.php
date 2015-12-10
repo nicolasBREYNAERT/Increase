@@ -6,6 +6,7 @@ class UseCasesController extends DefaultController{
 	}
 	
 	public function tachesAction($code=NULL){
+		
 		$taches=Tache::find("codeUseCase='".$code."'");
 		$usecase=Usecase::findFirst("code='".$code."'");
 		$n=$usecase->getNbreTache();
@@ -31,6 +32,8 @@ class UseCasesController extends DefaultController{
 		
 		$this->jquery->click(".ajouter","$('#modifier-".$usecase->getCode()."').hide(400);");
 		$this->jquery->getOnClick(".ajouter", "","#modifier-".$usecase->getCode(),array("attr"=>"data-ajax","jsCallback"=>"$('#modifier-".$usecase->getCode()."').show(400);"));
+		
+		$this->jquery->getOnclick(".supprimer", "","#supprimer-".$usecase->getCode(),array("attr"=>"data-ajax","jsCallback"=>"$('#supprimer-".$usecase->getCode()."').show(400);"));
 		
 		$this->jquery->compile($this->view);
 		$this->view->setVars(array("taches"=>$taches,"code"=>$code,"n"=>$i,"usecase"=>$usecase));
