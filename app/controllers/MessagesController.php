@@ -5,7 +5,8 @@ class MessagesController extends DefaultController{
 		$this->model="Message";
 	}
 	
-	public function repondreAction(){
+	public function repondreAction($id=NULL){
+		$p=$this->getInstance($id);
 		if($this->request->isPost()){
 			$object=$this->getInstance(@$_POST["id"]);
 			$this->setValuesToObject($object);
@@ -26,10 +27,14 @@ class MessagesController extends DefaultController{
 			}
 		}
 		//AJAX REFRESH LA DIV
+		$this->view->disable();
+		$this->jquery->get("Projects/messages/".$p->getId(),"#divMessages");
+		echo $this->jquery->compile();
 		
 	}
 	
-	public function nMessageAction(){
+	public function nMessageAction($id=NULL){
+		$p=$this->getInstance($id);
 		if($this->request->isPost()){
 			$object=$this->getInstance(@$_POST["id"]);
 			$this->setValuesToObject($object);
@@ -49,5 +54,8 @@ class MessagesController extends DefaultController{
 				}
 			}
 		}
+		$this->view->disable();
+		$this->jquery->get("Projects/messages/".$p->getId(),"#divMessages");
+		echo $this->jquery->compile();
 	}
 }

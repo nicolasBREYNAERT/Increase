@@ -81,7 +81,7 @@ class ProjectsController extends DefaultController{
 		}
 		
 		$this->view->setVars(array("message"=>$message, "reponse"=>$reponse, "projet"=>$p, "user"=>$user, "nom"=>$nom, "idFil"=>$idFil, "nomfrm"=>$nomfrm));
-		$this->jquery->postFormOnClick(".validate","messages/repondre","ajoutReponse");
+		$this->jquery->postFormOnClick(".validate","Messages/repondre","ajoutReponse");
 		$this->jquery->postFormOnClick(".validate","messages/nMessage","ajoutMessage");
 		
 		$this->jquery->compile($this->view);
