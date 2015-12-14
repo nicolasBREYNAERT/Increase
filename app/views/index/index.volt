@@ -16,10 +16,10 @@
 			</fieldset>
 		</form>
 		<br>
-	<a class="btn btn-primary" id="btn" data-ajax="">client</a>
-	<a class="btn btn-primary" id="btn" data-ajax="">author</a>
-	<a class="btn btn-primary" id="btn" data-ajax="">chef</a>
+	<a class="btn btn-primary" id="btn" href="users/projects/1">client</a>
+	<a class="btn btn-primary" id="btn" href="author/projects/2">author</a>
+	<a class="btn btn-primary" id="btn" href="chef/projects/2">chef</a>
+	<a class="btn btn-primary" id="btn" href="dev/projects/3">developpeur</a>
 	</div>
 	
 </div>
-{{ script_foot }}
