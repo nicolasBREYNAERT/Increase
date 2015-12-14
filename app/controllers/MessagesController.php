@@ -6,7 +6,6 @@ class MessagesController extends DefaultController{
 	}
 	
 	public function repondreAction($id=NULL){
-		$p=$this->getInstance($id);
 		if($this->request->isPost()){
 			$object=$this->getInstance(@$_POST["id"]);
 			$this->setValuesToObject($object);
@@ -26,9 +25,9 @@ class MessagesController extends DefaultController{
 				}
 			}
 		}
-		//AJAX REFRESH LA DIV
+
 		$this->view->disable();
-		$this->jquery->get("Projects/messages/".$p->getId(),"#divMessages");
+		$this->jquery->get("Projects/messages/".$id,"#divMessages");
 		echo $this->jquery->compile();
 		
 	}

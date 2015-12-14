@@ -17,7 +17,7 @@
   			</div>		
 			{% endfor %}
 			<a class="btn btn-primary btn-sm clickRep" data-ajax="{{msg.getId()}}">Répondre</a>
-			<div class="nReponse" id="nReponse-{{msg.getId()}}" style="margin-top:10px;">
+			<div class="nReponse" id="nReponse-{{msg.getId()}}" style="margin-top:10px;display:none">
 			</div>
 		</div>
 {% endfor %}
