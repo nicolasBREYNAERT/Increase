@@ -23,7 +23,7 @@
 {% endfor %}
 
 <div class="col-md-8"></div class="col-md-4"><div><a class="btn btn-info clickAjout" align="right" style="padding-left:40px;padding-right:40px;">+ Nouveau message</a></div>
-<div class="nMessage" id="nMessage" style="margin-top:10px;">
+<div class="nMessage" id="nMessage" style="margin-top:10px;display:none">
 </div>
 
 		

@@ -65,7 +65,7 @@ class ProjectsController extends DefaultController{
 		$this->jquery->click(".clickRep", "$('.nReponse').slideToggle('slow');");
 		$this->jquery->getOnClick(".clickRep","Projects/messageform/".$id."/Répondre à un message/frmAjoutMessage/","'#nReponse-'+$(self).attr('data-ajax')",array("attr"=>"data-ajax"));
 		$this->jquery->click(".clickAjout", "$('#nMessage').slideToggle('slow');");
-		$this->jquery->getOnClick(".clickAjout","Projects/messageform/".$id."/Ajouter un message/ajoutMessage/NULL","#nMessage");
+		$this->jquery->getOnClick(".clickAjout","Projects/messageform/".$id."/Ajouter un message/frmAjoutMessage/NULL","#nMessage");
 		
 		$this->jquery->compile($this->view);
 	}
@@ -82,9 +82,8 @@ class ProjectsController extends DefaultController{
 		
 		$this->view->setVars(array("message"=>$message, "reponse"=>$reponse, "projet"=>$p, "user"=>$user, "nom"=>$nom, "idFil"=>$idFil, "nomfrm"=>$nomfrm));
 		
-		//ne aps faire les 2 requetes en meme temps
-		$this->jquery->postFormOnClick(".validate","Messages/repondre","frmAjoutMessage");
-		//$this->jquery->postFormOnClick(".validate","Messages/nMessage","frmAjoutMessage");
+		$this->jquery->postFormOnClick(".validate","Messages/repondre","frmAjoutMessage","#divMessages");
+		
 		
 		$this->jquery->compile($this->view);
 		

@@ -1,4 +1,4 @@
-{{ form("Projects/message", "method": "post", "name":nomfrm, "id":nomfrm) }}
+{{ form("Projects/message", "method": "post", "name":"frmAjoutMessage", "id":nomfrm) }}
 <div class="panel panel-success">
 	<div class="panel-heading">{{nom}}</div>
 	<div class="panel-body">
